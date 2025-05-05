@@ -1,3 +1,3 @@
 export { Layout } from "./layout/Layout";
 
-export { PrintStyles } from "./custom-ui/PrintStyles";
+export { PrintStyles } from "./PrintStyles";
