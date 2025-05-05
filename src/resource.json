@@ -1,0 +1,104 @@
+{
+  "en": {
+    "brand_name": "Baristoosh",
+    "brand_slogan": "Make your coffee easily at home",
+    "navbar": {
+      "links": {
+        "home": "Home",
+        "shop": "Shop",
+        "recipes": "Recipes",
+        "login": "Login",
+        "signup": "Sign Up"
+      }
+    },
+    "home_page": {
+      "title": "Welcome to Baristoosh",
+      "subtitle": "The Art of Handcrafted Beverages",
+      "description": "Create delicious beverages at home without expensive equipment.",
+      "cta_btn": "See Recipes"
+    },
+    "recipe_page": {
+      "title": "Baristoosh Recipe Book",
+      "search_bar": "Search Recipes",
+      "filter": "Filter by Type",
+      "add_btn": "Add New Recipe",
+      "ingredients": "Ingredients",
+      "instructions": "Instructions",
+      "drink_categories": {
+        "coffee": "Coffee",
+        "tea": "Tea",
+        "milkshake": "Milkshake",
+        "smoothie": "Smoothie",
+        "all": "All"
+      },
+      "next_page_btn": "Next Page",
+      "prev_page_btn": "Previous Page"
+    },
+    "auth_page": {
+      "full_name": "Full Name",
+      "password": "Password",
+      "email": "email",
+      "favorite_drink": "Favorite Drink",
+      "login_btn": "Login",
+      "signup_btn": "Sign Up",
+      "google_login": "Login with Google",
+      "no_account_link": "Don't have an account?",
+      "have_account_link": "Already have an account?"
+    },
+    "footer": {
+      "copyright": "© 2025 All the rights are reserved for Baristoosh."
+    }
+  },
+  "fa": {
+    "brand_name": "باریستوش",
+    "brand_slogan": "باریستای خودت باش!",
+    "navbar": {
+      "links": {
+        "home": "خانه",
+        "shop": "فروشگاه",
+        "recipes": "دستورها",
+        "login": "ورود",
+        "signup": "ثبت‌نام"
+      }
+    },
+    "home_page": {
+      "title": "به باریستوش خوش آمدید",
+      "subtitle": "هنر نوشیدنی‌های دست‌ساز",
+      "description": "بدون نیاز به تجهیزات گران‌قیمت، نوشیدنی‌های خوشمزه در خانه بسازید.",
+      "cta_btn": "دستورها را ببینید"
+    },
+    "recipe_page": {
+      "title": "کتاب دستورهای باریستوش",
+      "search_bar": "جستجوی دستور",
+      "filter": "فیلتر بر اساس نوع",
+      "add_btn": "افزودن دستور جدید",
+      "ingredients": "مواد لازم",
+      "instructions": "دستورالعمل",
+      "drink_categories": {
+        "coffee": "قهوه",
+        "tea": "چای",
+        "milkshake": "میلک شیک",
+        "smoothie": "اسموتی",
+        "all": "همه"
+      },
+      "next_page_btn": "صفحه بعد",
+      "prev_page_btn": "صفحه قبل"
+    },
+    "auth_page": {
+      "login_title": "ورود",
+      "signup_title": "ثبت‌نام",
+      "full_name": "نام کامل",
+      "password": "رمز عبور",
+      "email": "ایمیل",
+      "favorite_drink": "نوشیدنی مورد علاقه",
+      "login_btn": "ورود",
+      "signup_btn": "ثبت‌نام",
+      "google_login": "ورود با گوگل",
+      "no_account_link": "حساب کاربری ندارید؟",
+      "have_account_link": "حساب کاربری دارید؟"
+    },
+    "footer": {
+      "copyright": "© 2025 کلیه حقوق این سایت محفوظ و متعلق به باریستوش می‌باشد."
+    }
+  }
+}

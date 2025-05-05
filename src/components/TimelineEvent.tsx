@@ -8,9 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TimelineEvent as TimelineEventType } from "@/constants/types";
-import { ShareButton } from "./ShareButton";
+import type { TimelineEvent as TimelineEventType } from "@/constants/types";
+import { ShareButton } from "./custom-ui/ShareButton";
 import { useSettings } from "@/contexts/SettingsContext";
+import { ExportButton } from "./custom-ui/ExportButton";
+import { PrintButton } from "./custom-ui/PrintButton";
 
 interface TimelineEventProps {
   event: TimelineEventType;
@@ -97,6 +99,8 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
         </CardContent>
         <CardFooter className="flex justify-end border-t bg-muted/50 py-3">
           <ShareButton event={event} />
+          <ExportButton />
+          <PrintButton />
         </CardFooter>
       </Card>
     </div>

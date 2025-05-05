@@ -1,7 +1,7 @@
 import { Timeline } from "@/components/Timeline";
 import { EventForm } from "@/components/EventForm";
-import { EventProvider } from "@/context/EventContext";
-import { SettingsProvider } from "@/context/SettingsContext";
+import { EventProvider } from "@/contexts/EventContext";
+import { SettingsProvider } from "@/contexts/SettingsContext";
 import { TimelineSettings } from "@/components/TimelineSettings";
 
 export const Home = () => {
@@ -24,13 +24,6 @@ export const Home = () => {
             <EventForm />
             <Timeline />
           </main>
-
-          <footer className="py-6 border-t bg-muted/30 print:border-t-0">
-            <div className="container text-center text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Life Timeline. All rights
-              reserved.
-            </div>
-          </footer>
         </div>
       </EventProvider>
     </SettingsProvider>

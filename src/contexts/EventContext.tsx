@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { TimelineEvent, EventContextType } from "../constants/types";
+import { createContext, useContext, useState } from "react";
+import type { ReactNode } from "react";
+import type { TimelineEvent, EventContextType } from "@/constants/types";
 import { v4 as uuidv4 } from "uuid";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const EventContext = createContext<EventContextType | undefined>(undefined);
 

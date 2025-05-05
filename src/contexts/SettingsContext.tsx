@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { TimelinePreferences } from "@/constants/types";
+import type { TimelinePreferences } from "@/constants/types";
 
 // Default themes
 export const themePresets = [

@@ -1,8 +1,8 @@
 import React from "react";
 import { Share } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/sonner";
-import { TimelineEvent } from "@/constants/types";
+import { toast } from "sonner";
+import type { TimelineEvent } from "@/constants/types";
 import { format } from "date-fns";
 import {
   DropdownMenu,
