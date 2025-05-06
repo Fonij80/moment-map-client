@@ -79,6 +79,25 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const removeEvent = (id: string) => {
+    const updatedEvents = events.filter((event) => event.id !== id);
+    setEvents(updatedEvents);
+
+    // Remove from localStorage
+    try {
+      localStorage.setItem("timeline-events", JSON.stringify(updatedEvents));
+      toast.success("Event deleted successfully");
+    } catch (error) {
+      console.error("Failed to delete event:", error);
+      toast.error("Failed to delete event");
+    }
+
+    // If the deleted event was active, clear it or select another
+    if (activeEvent?.id === id) {
+      setActiveEvent(updatedEvents[0] ?? null);
+    }
+  };
+
   const getSortedEvents = () => {
     return [...events].sort((a, b) => a.date.getTime() - b.date.getTime());
   };
@@ -94,6 +113,7 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
       value={{
         events,
         addEvent,
+        removeEvent,
         getSortedEvents,
         activeEvent,
         setActiveEvent,

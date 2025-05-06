@@ -13,6 +13,7 @@ export interface TimelineEvent {
 export interface EventContextType {
   events: TimelineEvent[];
   addEvent: (event: Omit<TimelineEvent, "id">) => void;
+  removeEvent: (id: string) => void;
   getSortedEvents: () => TimelineEvent[];
   activeEvent: TimelineEvent | null;
   setActiveEvent: (event: TimelineEvent | null) => void;

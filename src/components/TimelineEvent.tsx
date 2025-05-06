@@ -9,19 +9,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { TimelineEvent as TimelineEventType } from "@/constants/types";
-import { ShareButton } from "./custom-ui/ShareButton";
+import { ShareButton, ExportButton, PrintButton } from "./custom-ui";
 import { useSettings } from "@/contexts/SettingsContext";
-import { ExportButton } from "./custom-ui/ExportButton";
-import { PrintButton } from "./custom-ui/PrintButton";
+import { Trash } from "lucide-react";
 
 interface TimelineEventProps {
   event: TimelineEventType;
   active?: boolean;
+  onDelete?: (id: string) => void;
 }
 
 export const TimelineEvent: React.FC<TimelineEventProps> = ({
   event,
   active = false,
+  onDelete,
 }) => {
   const { preferences } = useSettings();
 
@@ -53,7 +54,6 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
         </div>
       );
     } else if (event.imageUrl) {
-      // Legacy support for older events with just imageUrl
       return (
         <div className="relative w-full h-48 overflow-hidden">
           <img
@@ -74,8 +74,19 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
       }`}
     >
       <Card
-        className={`overflow-hidden border border-border shadow-sm ${preferences.fontFamily}`}
+        className={`overflow-hidden border border-border shadow-sm ${preferences.fontFamily} relative`}
       >
+        {/* Trash icon absolute top-left */}
+        {onDelete && (
+          <button
+            className="absolute z-10 top-1 right-2 bg-white/80 hover:bg-red-100 rounded-full p-1 transition-colors"
+            onClick={() => onDelete(event.id)}
+            aria-label="Delete event"
+            type="button"
+          >
+            <Trash className="h-5 w-5 text-red-500" />
+          </button>
+        )}
         {renderMedia()}
         <CardHeader>
           <div className="flex justify-between items-start">
@@ -97,7 +108,7 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
             </p>
           )}
         </CardContent>
-        <CardFooter className="flex justify-end border-t bg-muted/50 py-3">
+        <CardFooter className="flex justify-center border-t bg-muted/50 gap-2">
           <ShareButton event={event} />
           <ExportButton />
           <PrintButton />

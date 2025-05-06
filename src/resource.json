@@ -1,6 +1,6 @@
 {
   "en": {
-    "brand_name": "Baristoosh",
+    "brand_name": "Moment Map",
     "brand_slogan": "Make your coffee easily at home",
     "navbar": {
       "links": {
@@ -46,11 +46,11 @@
       "have_account_link": "Already have an account?"
     },
     "footer": {
-      "copyright": "© 2025 All the rights are reserved for Baristoosh."
+      "copyright": "© {{year}} {{brand}}. Made with passion by <creator>Fonij</creator>"
     }
   },
   "fa": {
-    "brand_name": "باریستوش",
+    "brand_name": "لحظه‌نگار",
     "brand_slogan": "باریستای خودت باش!",
     "navbar": {
       "links": {
@@ -98,7 +98,7 @@
       "have_account_link": "حساب کاربری دارید؟"
     },
     "footer": {
-      "copyright": "© 2025 کلیه حقوق این سایت محفوظ و متعلق به باریستوش می‌باشد."
+      "copyright": "© {{year}} {{brand}} ساخته شده توسط <creator>Fonij</creator>"
     }
   }
 }

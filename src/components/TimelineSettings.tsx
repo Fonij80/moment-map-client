@@ -100,7 +100,7 @@ export const TimelineSettings = () => {
           Settings
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-[350px] sm:w-[540px] overflow-y-auto">
+      <SheetContent className="w-[350px] sm:w-[540px] overflow-y-auto p-8">
         <SheetHeader>
           <SheetTitle>Timeline Settings</SheetTitle>
         </SheetHeader>
@@ -138,15 +138,15 @@ export const TimelineSettings = () => {
                     {theme.name}
                   </Button>
                 ))}
-                <Button
-                  variant="outline"
-                  className="justify-start gap-2 opacity-50"
-                  disabled
-                >
-                  <Palette className="w-4 h-4" />
-                  Custom (Coming Soon)
-                </Button>
               </div>
+              <Button
+                variant="outline"
+                className="justify-start gap-2 opacity-50"
+                disabled
+              >
+                <Palette className="w-6 h-6" />
+                Custom (Coming Soon)
+              </Button>
             </div>
 
             <div className="space-y-4">

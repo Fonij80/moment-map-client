@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { format } from "date-fns";
 import { useEvents } from "@/contexts/EventContext";
-import { TimelineEvent as TimelineEventComponent } from "./TimelineEvent";
+import { TimelineEvent } from "./TimelineEvent";
 import { Button } from "@/components/ui/button";
 import { Pause, Play } from "lucide-react";
 import { useSettings } from "@/contexts/SettingsContext";
+import { EventDate } from "./event/EventDate";
 
 export const Timeline = () => {
-  const { getSortedEvents, activeEvent, setActiveEvent } = useEvents();
+  const { getSortedEvents, activeEvent, setActiveEvent, removeEvent } =
+    useEvents();
   const { preferences } = useSettings();
   const sortedEvents = getSortedEvents();
   const [sliderPosition, setSliderPosition] = useState(0);
@@ -54,7 +56,6 @@ export const Timeline = () => {
   }, [sortedEvents, setActiveEvent]);
 
   useEffect(() => {
-    // Initialize with the first event
     if (sortedEvents.length > 0 && !activeEvent) {
       setActiveEvent(sortedEvents[0]);
       setSliderPosition(0);
@@ -145,16 +146,13 @@ export const Timeline = () => {
 
             {/* Date labels */}
             {sortedEvents.map((event, index) => (
-              <div
+              <EventDate
                 key={`label-${event.id}`}
-                className="absolute text-xs text-gray-600 transform -translate-x-1/2 mt-4 text-center"
-                style={{
-                  left: `${(index / (sortedEvents.length - 1)) * 100}%`,
-                  minWidth: "60px",
-                }}
-              >
-                {format(event.date, "MMM yyyy")}
-              </div>
+                id={event.id}
+                date={event.date}
+                index={index}
+                length={sortedEvents.length}
+              />
             ))}
           </div>
 
@@ -275,7 +273,11 @@ export const Timeline = () => {
       {/* Active event display for screen */}
       <div className="px-4 print:hidden">
         {activeEvent && (
-          <TimelineEventComponent event={activeEvent} active={true} />
+          <TimelineEvent
+            event={activeEvent}
+            active={true}
+            onDelete={removeEvent}
+          />
         )}
       </div>
 
@@ -284,7 +286,7 @@ export const Timeline = () => {
         <h2 className="text-2xl font-bold mb-6">Timeline Events</h2>
         {sortedEvents.map((event) => (
           <div key={`print-${event.id}`} className="mb-8 timeline-event">
-            <TimelineEventComponent event={event} active={true} />
+            <TimelineEvent event={event} active={true} onDelete={removeEvent} />
           </div>
         ))}
       </div>
