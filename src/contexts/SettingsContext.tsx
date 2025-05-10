@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import type { TimelinePreferences } from "@/constants/types";
+import { createContext, useContext, useState } from "react";
+import type { ReactNode } from "react";
+import type { TimelinePreferences, ShareSettings } from "@/constants/types";
 
 // Default themes
 export const themePresets = [
@@ -33,6 +34,24 @@ export const themePresets = [
     fontColor: "text-blue-900",
     accentColor: "cyan",
   },
+  {
+    name: "Vintage",
+    background: "bg-[#f5f0e6]",
+    fontColor: "text-[#854d27]",
+    accentColor: "orange",
+  },
+  {
+    name: "Minimal",
+    background: "bg-white",
+    fontColor: "text-gray-800",
+    accentColor: "gray",
+  },
+  {
+    name: "Vibrant",
+    background: "bg-purple-900",
+    fontColor: "text-pink-100",
+    accentColor: "fuchsia",
+  },
 ];
 
 // Font options
@@ -50,6 +69,38 @@ export const musicPresets = [
   { name: "Jazz", url: "https://example.com/jazz.mp3" },
 ];
 
+// Common life events for onboarding
+export const lifeEventSuggestions = [
+  {
+    title: "First Day at School",
+    description: "Your first day at elementary school",
+  },
+  {
+    title: "Graduation Day",
+    description: "The day you graduated from high school or college",
+  },
+  { title: "First Job", description: "Your first professional job" },
+  {
+    title: "First Trip Abroad",
+    description: "Your first international travel experience",
+  },
+  {
+    title: "Moving to a New Home",
+    description: "When you moved to a significant place",
+  },
+  { title: "Wedding Day", description: "Your wedding celebration" },
+  { title: "Birth of Child", description: "When your child was born" },
+  {
+    title: "Major Achievement",
+    description: "An important accomplishment in your life",
+  },
+  {
+    title: "Learning to Drive",
+    description: "When you got your driver's license",
+  },
+  { title: "First Pet", description: "When you got your first pet" },
+];
+
 interface SettingsContextType {
   preferences: TimelinePreferences;
   updatePreferences: (newPreferences: Partial<TimelinePreferences>) => void;
@@ -61,6 +112,9 @@ interface SettingsContextType {
   setCustomMusic: (file: File | null) => void;
   isPlaying: boolean;
   setIsPlaying: (isPlaying: boolean) => void;
+  shareSettings: ShareSettings;
+  updateShareSettings: (settings: Partial<ShareSettings>) => void;
+  generateShareUrl: () => string;
 }
 
 const defaultPreferences: TimelinePreferences = {
@@ -72,6 +126,22 @@ const defaultPreferences: TimelinePreferences = {
   },
   fontFamily: "font-sans",
   backgroundMusic: null,
+};
+
+const defaultShareSettings: ShareSettings = {
+  visibility: "public",
+  password: "",
+  shareUrl: "",
+  shareId: "",
+};
+
+// Helper function to generate a unique ID - moved above its usage
+const generateUniqueId = () => {
+  // Simple unique ID generator - in a real app, use a more robust solution
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  );
 };
 
 const SettingsContext = createContext<SettingsContextType | undefined>(
@@ -90,6 +160,23 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
       }
     }
     return defaultPreferences;
+  });
+
+  const [shareSettings, setShareSettings] = useState<ShareSettings>(() => {
+    const savedSettings = localStorage.getItem("timeline-share-settings");
+    if (savedSettings) {
+      try {
+        return JSON.parse(savedSettings);
+      } catch (error) {
+        console.error("Failed to parse saved share settings:", error);
+        return defaultShareSettings;
+      }
+    }
+
+    // Generate a unique ID for sharing if not already present
+    const newSettings = { ...defaultShareSettings };
+    newSettings.shareId = generateUniqueId();
+    return newSettings;
   });
 
   const [selectedTheme, setSelectedTheme] = useState("Default");
@@ -112,6 +199,31 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const updateShareSettings = (settings: Partial<ShareSettings>) => {
+    const updatedSettings = { ...shareSettings, ...settings };
+
+    // Generate URL if needed
+    if (!updatedSettings.shareUrl && updatedSettings.shareId) {
+      updatedSettings.shareUrl = generateShareUrl();
+    }
+
+    setShareSettings(updatedSettings);
+
+    // Save to localStorage
+    try {
+      localStorage.setItem(
+        "timeline-share-settings",
+        JSON.stringify(updatedSettings)
+      );
+    } catch (error) {
+      console.error("Failed to save share settings:", error);
+    }
+  };
+
+  const generateShareUrl = () => {
+    return `${window.location.origin}/timeline/${shareSettings.shareId}`;
+  };
+
   return (
     <SettingsContext.Provider
       value={{
@@ -125,6 +237,9 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
         setCustomMusic,
         isPlaying,
         setIsPlaying,
+        shareSettings,
+        updateShareSettings,
+        generateShareUrl,
       }}
     >
       {children}

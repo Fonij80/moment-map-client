@@ -40,3 +40,10 @@ export interface TimelinePreferences {
     name: string;
   } | null;
 }
+
+export interface ShareSettings {
+  visibility: "public" | "private" | "password-protected";
+  password: string;
+  shareUrl: string;
+  shareId: string;
+}

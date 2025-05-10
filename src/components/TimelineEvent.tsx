@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { TimelineEvent as TimelineEventType } from "@/constants/types";
-import { ShareButton, ExportButton, PrintButton } from "./custom-ui";
 import { useSettings } from "@/contexts/SettingsContext";
 import { Trash } from "lucide-react";
 
@@ -108,11 +107,9 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
             </p>
           )}
         </CardContent>
-        <CardFooter className="flex justify-center border-t bg-muted/50 gap-2">
-          <ShareButton event={event} />
-          <ExportButton />
-          <PrintButton />
-        </CardFooter>
+        {/* <CardFooter className="flex justify-center border-t bg-muted/50 gap-2">
+          
+        </CardFooter> */}
       </Card>
     </div>
   );

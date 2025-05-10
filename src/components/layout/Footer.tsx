@@ -4,8 +4,8 @@ export const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="py-6 border-t">
-      <div className="container text-center text-sm text-muted-foreground">
+    <footer className="py-6 border-t w-full">
+      <div className="text-center text-sm text-muted-foreground">
         <Trans
           i18nKey="footer.copyright"
           values={{ year: new Date().getFullYear(), brand: t("brand_name") }}
