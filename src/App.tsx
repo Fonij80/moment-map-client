@@ -1,7 +1,6 @@
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
-import { EventProvider } from "@/contexts/EventContext";
-import { SettingsProvider } from "@/contexts/SettingsContext";
+import { EventProvider, SettingsProvider } from "@/contexts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster as Sonner } from "@/components/ui/sonner";

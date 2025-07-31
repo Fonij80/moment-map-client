@@ -1,7 +1,8 @@
 {
   "en": {
     "brand_name": "Moment Map",
-    "tagline": "Create a beautiful timeline of your life's most important moments. Add events, include photos, and share your journey with others.",
+    "tagline": "Tell Your Life Story With",
+    "description": "Create beautiful, animated timelines of your life journey. Chart your milestones, share with loved ones, and celebrate the moments that made you who you are.",
     "signin_btn": "Sign in with Google",
     "setting": {
       "setting_btn": "Settings",
@@ -19,7 +20,8 @@
   },
   "fa": {
     "brand_name": "لحظه‌نگار",
-    "tagline": "Create a beautiful timeline of your life's most important moments. Add events, include photos, and share your journey with others.",
+    "tagline": "Tell Your Life Story With",
+    "description": "Create beautiful, animated timelines of your life journey. Chart your milestones, share with loved ones, and celebrate the moments that made you who you are.",
     "signin_btn": "Sign in with Google",
     "setting": {
       "setting_btn": "تنظیمات",

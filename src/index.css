@@ -51,7 +51,7 @@
   --radius: 0.625rem;
 
   /* Base */
-  --background: #fcf8e8; /* Cream */
+  --background: #f8f8f8; /* Cream */
   --foreground: #3b2f2f; /* Espresso Brown */
   --card: #ffffff; /* White */
   --card-foreground: #3b2f2f;
@@ -59,9 +59,9 @@
   --popover-foreground: #3b2f2f;
 
   /* Actions */
-  --primary: #e1ad01; /* Mustard Yellow */
+  --primary: #007b82; /* Mustard Yellow */
   --primary-foreground: #3b2f2f;
-  --secondary: #d66735; /* Terracotta */
+  --secondary: #ff00a2; /* Terracotta */
   --secondary-foreground: #ffffff;
   --accent: #8daa9d; /* Sage Green */
   --accent-foreground: #3b2f2f;
@@ -141,5 +141,28 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Timeline Dot Styles */
+.bg-timeline-dot {
+  background-color: var(--border); /* or choose another variable */
+}
+
+.bg-timeline-activeDot {
+  background-color: var(--primary); /* or choose another variable */
+}
+
+/* Print Styles */
+@media print {
+  .print-hidden {
+    display: none;
+  }
+  .timeline-container {
+    width: 100%;
+    padding: 20px;
+  }
+  .timeline-event {
+    page-break-before: always;
   }
 }

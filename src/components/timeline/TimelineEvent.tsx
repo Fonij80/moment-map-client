@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -24,25 +23,72 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
   onDelete,
 }) => {
   const { preferences } = useSettings();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    if (window.innerWidth > 768) {
+      setIsHovered(true); // For desktop, show enlarged media
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false); // Reset the enlarged media
+  };
+
+  const handleTouchStart = () => {
+    if (window.innerWidth <= 768) {
+      setIsHovered(true); // For mobile, show enlarged media on tap
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (window.innerWidth <= 768) {
+      setIsHovered(false); // Reset the enlarged media after tap
+    }
+  };
 
   const renderMedia = () => {
     if (event.mediaType === "image" && event.imageUrl) {
       return (
-        <div className="relative w-full h-48 overflow-hidden">
+        <div
+          className="relative w-full h-48 overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <img
             src={event.imageUrl}
             alt={event.title}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            className={`w-full h-full object-cover transition-transform duration-500 ${
+              isHovered ? "scale-150 z-10" : "scale-100"
+            }`}
+            style={{
+              transition: "transform 0.3s ease-in-out",
+              zIndex: isHovered ? 10 : "auto",
+            }}
           />
         </div>
       );
     } else if (event.mediaType === "video" && event.videoUrl) {
       return (
-        <div className="relative w-full h-48 overflow-hidden">
+        <div
+          className="relative w-full h-48 overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <video
             src={event.videoUrl}
             controls
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover transition-transform duration-500 ${
+              isHovered ? "scale-150 z-10" : "scale-100"
+            }`}
+            style={{
+              transition: "transform 0.3s ease-in-out",
+              zIndex: isHovered ? 10 : "auto",
+            }}
           />
         </div>
       );
@@ -54,11 +100,23 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
       );
     } else if (event.imageUrl) {
       return (
-        <div className="relative w-full h-48 overflow-hidden">
+        <div
+          className="relative w-full h-48 overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <img
             src={event.imageUrl}
             alt={event.title}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            className={`w-full h-full object-cover transition-transform duration-500 ${
+              isHovered ? "scale-150 z-10" : "scale-100"
+            }`}
+            style={{
+              transition: "transform 0.3s ease-in-out",
+              zIndex: isHovered ? 10 : "auto",
+            }}
           />
         </div>
       );
@@ -107,9 +165,6 @@ export const TimelineEvent: React.FC<TimelineEventProps> = ({
             </p>
           )}
         </CardContent>
-        {/* <CardFooter className="flex justify-center border-t bg-muted/50 gap-2">
-          
-        </CardFooter> */}
       </Card>
     </div>
   );

@@ -13,7 +13,7 @@ import {
   LayoutSetting,
   AudioSetting,
   ShareSetting,
-} from "./setting";
+} from "../setting";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 

@@ -66,14 +66,14 @@ export const AppearanceSetting = () => {
             </Button>
           ))}
         </div>
-        <Button
+        {/* <Button
           variant="outline"
           className="justify-start gap-2 opacity-50"
           disabled
         >
           <Palette className="w-6 h-6" />
           Custom (Coming Soon)
-        </Button>
+        </Button> */}
       </div>
 
       <div className="space-y-4">

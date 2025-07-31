@@ -23,7 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MediaUpload } from "./MediaUpload";
+import { MediaUpload } from "../MediaUpload";
 import { useSettings } from "@/contexts/SettingsContext";
 
 const months = [

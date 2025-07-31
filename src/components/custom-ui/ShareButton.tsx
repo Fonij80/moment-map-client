@@ -2,8 +2,7 @@ import React from "react";
 import { Share } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import type { TimelineEvent } from "@/constants/types";
-import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,39 +11,43 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface ShareButtonProps {
-  event: TimelineEvent;
+  timelineUrl: string;
 }
 
-export const ShareButton: React.FC<ShareButtonProps> = ({ event }) => {
-  const shareText = `Check out this life event: ${event.title} - ${format(
-    event.date,
-    "MMMM d, yyyy"
-  )}`;
-  const shareUrl = window.location.href;
+export const ShareButton: React.FC<ShareButtonProps> = ({ timelineUrl }) => {
+  const { t } = useTranslation();
+  const shareText = `Check out this life timeline: ${timelineUrl}`;
 
   const handleShareClick = async (platform: string) => {
     try {
       if (platform === "clipboard") {
-        await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+        await navigator.clipboard.writeText(`${shareText}`);
         toast.success("Link copied to clipboard!");
       } else if (platform === "twitter") {
         window.open(
           `https://twitter.com/intent/tweet?text=${encodeURIComponent(
             shareText
-          )}&url=${encodeURIComponent(shareUrl)}`,
+          )}&url=${encodeURIComponent(timelineUrl)}`,
+          "_blank"
+        );
+      } else if (platform === "telegram") {
+        window.open(
+          `https://t.me/share/url?url=${encodeURIComponent(
+            timelineUrl
+          )}&text=${encodeURIComponent(shareText)}`,
           "_blank"
         );
       } else if (platform === "facebook") {
         window.open(
           `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-            shareUrl
+            timelineUrl
           )}`,
           "_blank"
         );
       } else if (platform === "linkedin") {
         window.open(
           `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-            shareUrl
+            timelineUrl
           )}`,
           "_blank"
         );
@@ -60,21 +63,24 @@ export const ShareButton: React.FC<ShareButtonProps> = ({ event }) => {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           <Share className="h-4 w-4 mr-2" />
-          Share
+          {t("Share Timeline")}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => handleShareClick("clipboard")}>
-          Copy Link
+          {t("Copy Link")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleShareClick("twitter")}>
-          Share on Twitter
+          {t("Share on Twitter")}
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => handleShareClick("telegram")}>
+          {t("Share on Telegram")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleShareClick("facebook")}>
-          Share on Facebook
+          {t("Share on Facebook")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleShareClick("linkedin")}>
-          Share on LinkedIn
+          {t("Share on LinkedIn")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -3,7 +3,20 @@ import { Printer } from "lucide-react";
 
 export const PrintButton = () => {
   const handlePrint = () => {
-    window.print();
+    // Get the element to print (in this case, the timeline container)
+    const printContent = document.getElementById("print-timeline");
+
+    if (printContent) {
+      // Open a new window for printing
+      const printWindow = window.open("", "_blank");
+      printWindow?.document.write(
+        "<html><head><title>Print</title></head><body>"
+      );
+      printWindow?.document.write(printContent?.innerHTML); // Write only the timeline content to the new window
+      printWindow?.document.write("</body></html>");
+      printWindow?.document.close();
+      printWindow?.print(); // Trigger the print dialog
+    }
   };
 
   return (
